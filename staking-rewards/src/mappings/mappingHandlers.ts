@@ -21,6 +21,14 @@ function createSumReward(accountId: string): SumReward {
     return entity;
 }
 
+export async function handleSumReward(event: SubstrateEvent): Promise<void> {
+    await handleSumRewarded(event)
+}
+
+export async function handleStakingReward(event: SubstrateEvent): Promise<void> {
+    await handleStakingRewarded(event)
+}
+
 export async function handleSumRewarded(event: SubstrateEvent): Promise<void> {
     const {event: {data: [account, newReward]}} = event;
     let entity = await SumReward.get(account.toString());
